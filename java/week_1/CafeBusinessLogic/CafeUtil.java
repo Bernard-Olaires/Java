@@ -3,28 +3,51 @@ import java.util.ArrayList;
 public class CafeUtil {
 
     // get streak goal
+    /* 
+    Cafe Java wants to implement a reward system for customers who always buy more drinks than they did the week before. 
+    To calculate how many drinks they need after 10 weeks, write a method that sums together every consecutive integer from 1 to 10
+    and returns the sum. In other words, add 1 + 2 + 3.. and so on up to 10 and return the result.
+    */
+    /*
+    Ninja Bonus:  Add a parameter, numWeeks so that an admin can change the number from 10 to whatever they want.
+    */
 
     public int getStreakGoal() {
         int sum = 0;
-        for(int wkee = 1; week <= 10; week++) {
+        for(int week = 1; week <= 10; week++) {
             sum += week;
         }
         return sum;
     }
 
+
     /* 
-        Given an array of pruces for profucts purchased, lineItems,
-        sum the amont to return the order total
+    double getOrderTotal(double[] prices)
+    Given an array of item prices from an order, sum all of the prices in the array and return the total. 
     */
 
-    public double getOrderTotal(double[] lineItems) {
-        double sum = 0;
-
-        for (double price: lineItems) {
-            sum_= price;
+    public double getOrderTotal(double[] prices) {
+        double total = 0;
+        for(int i = 0; i < prices.length; i++) {
+            total = total + prices[i];
         }
-        return sum;
+        return total;
     }
+
+
+
+    // display coffee menu
+    public void displayMenu(ArrayList<String> menuItems) {
+
+        // to access an element in an ArrayList using an index
+        for(int i= 0; i < menuItems.size(); i++) {
+            System.out.printf("%s %s\n", i, menuItems.get(i));
+        }
+    }
+
+
+
+
 
     // addCustomer
 
@@ -37,12 +60,10 @@ public class CafeUtil {
         System.out.println(customerList);
     }
 
-    // display coffee menu
-    public void displayMenu(ArrayList<String> menuItems) {
+    // Ninja Bonuses
 
-        for (int id = 0; id < menuItems.size(); id++) {
-            System.out.printf("%s %s \n", id, menuItems,get(id));
-        }
-    }
 
-}
+
+
+
+} // end of public 
