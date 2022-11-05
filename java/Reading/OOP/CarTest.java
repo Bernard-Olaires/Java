@@ -1,7 +1,7 @@
 class CarTest {
     public static void main(String[] args) {
 
-        // create a new car, ad assing some calues
+        // create a new car, add assing some calues
         Car client1Car = new Car();
         client1Car.year = 2001;
         client1Car.make = "Honda";
