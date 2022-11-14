@@ -1,10 +1,8 @@
-class Car {
+public class Car {
 
-    private int gas = 10;
+    public int gas = 10;
 
-    public int getGas() {
-        return gas;
+    public void gasTank() {
+        System.out.println("Gas remaining: "+gas+"/10");
     }
-
-    
 }

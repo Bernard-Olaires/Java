@@ -1,16 +1,20 @@
-class Driver extends Car {
+public class Driver extends Car {
 
     public void drive() {
-        Car.gas -= 1;
-        System.out.println("You are now driving the car.")
+        System.out.println("You are now driving the car.");
+        gas--;
+        gasTank();
     }
 
     public void booster() {
-        Car.gas -= 3;
         System.out.println("You have used a booster!");
+        gas-= 3;
+        gasTank();
     }
 
     public void refuel() {
-        Car.gas +=
+        System.out.println("You have refueled!.");
+        gas += 2;
+        gasTank();
     }
 }
