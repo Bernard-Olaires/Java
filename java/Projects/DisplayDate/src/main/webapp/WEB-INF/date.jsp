@@ -1,19 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!-- New line below to use the JSP Standard Tag Library -->
+    pageEncoding="UTF-8" import="java.util.Date" %>
+    
+ <!-- New line below to use the JSP Standard Tag Library -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
-
-
 
 <!DOCTYPE html>
 <html>
 <head>
-
 	<meta charset="UTF-8">
-	<title>Hoppers Receipt</title>
-	
+	<title>Insert title here</title>
 	<!-- CSS link to js file -->
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	
@@ -23,15 +18,7 @@
 </head>
 <body>
 
-	<h1>Customer Name: <c:out value="${name}"/></h1>
-	
-	<p>Item Name: <c:out value="${item}"/></p>
-	
-	<p>Price: <c:out value="${5.25}"/></p>
-	
-	<p>Description: <c:out value="${description}"/></p>
-	
-	<p>Vendor: <c:out value="${vendor}"/></p>
+	<h1 class="date"> <c:out value="${dateString}"/> </h1>
 	
 </body>
 </html>

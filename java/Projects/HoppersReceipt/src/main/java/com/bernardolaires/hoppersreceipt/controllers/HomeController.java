@@ -19,6 +19,7 @@ public class HomeController {
     
     	model.addAttribute("name", name);
     	model.addAttribute("item", itemName);
+    	model.addAttribute("price", price);
     	model.addAttribute("description", description);
     	model.addAttribute("vendor", vendor);
     
