@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.container {
+	width: 500px;
+	margin: auto;
+	padding: 20px;
+}
+
+.header {
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.content {
+	display: flex;
+	justify-content: space-evenly;
+	border: 1px solid black;
+	padding: 10px;
+}
+
+.new_form{
+    max-width: 500px;
+    margin: 2rem auto;
+    border: 2px solid rgb(0, 128, 128);
+    padding: 5rem;
+    background-color: lightgray;
+    font-size: 20px;
+}
+
+.new_form label, input, textarea{
+    display: block;
+    width: 80%;
+    margin: 10px;
+    padding: 5px;
+}
