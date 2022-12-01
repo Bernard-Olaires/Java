@@ -18,28 +18,13 @@
 </head>
 
 <body>
-	<div class="container">
-		<table>
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Title</th>
-					<th>Language</th>
-					<th># of Pages</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="book" items="${books}">
-					<tr>
-						<td> <c:out value="${book.id}"/> </td>
-						<td> <a href="/books/${book.id}"> <c:out value="${book.title}"/> </a> </td>
-						<td> <c:out value="${book.language}"/> </td>
-						<td> <c:out value="${book.numberOfPages}"/> </td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
+	<h1> <c:out value="${book.title}"/> </h1>
+	
+	<p> Description: <c:out value="${book.description}"/> </p>
+	
+	<p> Language: <c:out value="${book.language}"/> </p>
+	
+	<p> Number of Pages: <c:out value="${book.numberOfPages}"/> </p>
 </body>
 
 </html>
