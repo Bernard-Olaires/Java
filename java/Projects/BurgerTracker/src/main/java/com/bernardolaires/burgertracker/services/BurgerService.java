@@ -38,6 +38,18 @@ public class BurgerService {
 		}
 	}
 	
+	// updates burger
+	
+	public Burger updateBurger(Burger burger) {
+		return burgerRepository.save(burger);
+	}
+	
+	public void deleteBruger(Long id) {
+		Optional<Burger> optionalBurger = burgerRepository.findById(id);
+		if(optionalBurger.isPresent()) {
+			burgerRepository.deleteById(id);
+		}
+	}
 	
 	
 }

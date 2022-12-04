@@ -29,6 +29,7 @@
 						<th>Burger Name</th>
 						<th>Restaurant Name</th>
 						<th>Rating (out of 10)</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -37,6 +38,7 @@
 							<td> <c:out value="${burger.burgerName}"/> </td>
 							<td> <c:out value="${burger.resturantName}"/> </td>
 							<td> <c:out value="${burger.rating}"/> </td>
+							<td> <a href="/burgers/${burger.id}/edit">Edit</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
