@@ -9,7 +9,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>Book Show</title>
 	<!-- CSS link to js file -->
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	
