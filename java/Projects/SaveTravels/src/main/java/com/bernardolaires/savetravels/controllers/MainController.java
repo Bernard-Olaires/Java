@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ import com.bernardolaires.savetravels.services.ExpenseService;
 public class MainController {
 
 	@Autowired
-	private ExpenseService expenses;
+	ExpenseService expenses;
 	
 	@GetMapping("/")
 	public String index() {
@@ -46,23 +47,29 @@ public class MainController {
 		return "redirect:/expenses";
 	}
 	
-	@GetMapping("/expenses/${expense.id}/edit")
+	@GetMapping("/expenses/{id}/edit")
 	public String edit(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("expense", expenses.find(id));
 		System.out.println("this is the platform solution");
 		
-		return "show.jsp";
+		return "edit.jsp";
 	}
 	
-	@PostMapping("/expenses/{id}")
-	public String update(@PathVariable("id") Long id, @Valid @ModelAttribute("expense") Expense expense, BindingResult result, Model model) {
+	@PostMapping("/expenses/{id}/edit")
+	public String update(@PathVariable("id") Long id, @Valid @ModelAttribute("expense") Expense expense, BindingResult result) {
 		if(result.hasErrors()) {
-			model.addAttribute("expenses", expenses.allExpenses());
 			return "edit.jsp";
+		}else {
+			expenses.update(expense);
+			return "redirect:/";
 		}
-		expenses.update(expense);
-		
-		return "redirect:/expenses";
 		
 	}
+	
+    @GetMapping("/expenses/{id}/delete")
+    @DeleteMapping("/expenses/{id}/delete")
+    public String deleteFromDb(@PathVariable("id") Long id) {
+    	expenses.deleteExpense(id);
+    	return "redirect:/";
+    }
 }

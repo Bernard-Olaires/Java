@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>   
 
 <h2>Edit Expense:</h2>
-		<form:form action="/expenses" method="post" modelAttribute="expense">
+		<form:form action="/expenses/${id}/edit" method="post" modelAttribute="expense">
 			<div>
 				<form:label path="name">Expense Name:</form:label>
 				<form:errors path="name"/>
