@@ -26,6 +26,7 @@
 					<th>Title</th>
 					<th>Language</th>
 					<th># of Pages</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,11 +36,13 @@
 						<td> <a href="/books/${book.id}"> <c:out value="${book.title}"/> </a> </td>
 						<td> <c:out value="${book.language}"/> </td>
 						<td> <c:out value="${book.numberOfPages}"/> </td>
+						<td> <a href="/books/${book.id}/edit">Edit</a> | <a href="/books/${book.id}/delete"> Delete </a> </td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+	<a href="/books/new">Add a Book</a>
 </body>
 
 </html>

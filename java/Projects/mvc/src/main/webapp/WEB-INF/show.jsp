@@ -26,7 +26,6 @@
 	
 	<p> Number of Pages: <c:out value="${book.numberOfPages}"/> </p>
 	
-	<a href="/books/${book.id}/edit">Edit</a>
 </body>
 
 </html>

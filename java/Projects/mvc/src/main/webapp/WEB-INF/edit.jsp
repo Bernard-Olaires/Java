@@ -2,6 +2,12 @@
 <%@ page isErrorPage="true" %>    
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>     
 <h1>Edit Book</h1>
+
+<form action="/books/${book.id}/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+</form>
+
 <form:form action="/books/${book.id}" method="post" modelAttribute="book">
     <input type="hidden" name="_method" value="put">
     <p>
@@ -26,4 +32,5 @@
     </p>    
     <input type="submit" value="Submit"/>
 </form:form>
+
 
