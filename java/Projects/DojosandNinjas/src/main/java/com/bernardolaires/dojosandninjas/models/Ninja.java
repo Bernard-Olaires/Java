@@ -9,8 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="ninjas")
@@ -19,20 +26,64 @@ public class Ninja {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotNull
+	@Size(min=1, max=200, message="First name must not be left blank")
 	private String firstName;
+	
+	@NotNull
+	@Size(min=1, max=200, message="Last name must not be left blank")
 	private String lastName;
+	
+	@NotNull
+	@Min(1)
 	private Integer age;
-	@Column(updatable=false)
-	private Date createdAt;
-	private Date updatedAt;
-	@OneToOne(fetch=FetchType.LAZY)
+	
+	
+    // This will not allow the createdAt column to be updated after creation
+	
+    @Column(updatable=false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date createdAt;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date updatedAt;
+    
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
+    }
+	
+	// ONE TO MANY RELATIONSHIPS
+    
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="dojo_id")
 	private Dojo dojo;
+	
+	// EMPTY CONSTRUCTOR
 	
 	public Ninja() {
 		
 	}
+	
+	
 
+	public Ninja(Long id, String firstName, String lastName, Integer age, Date createdAt, Date updatedAt, Dojo dojo) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.dojo = dojo;
+	}
+	
+	
+	// GETTERS AND SETTERS
+	
 	public Long getId() {
 		return id;
 	}

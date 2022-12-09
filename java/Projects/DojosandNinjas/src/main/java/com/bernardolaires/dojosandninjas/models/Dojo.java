@@ -1,6 +1,7 @@
 package com.bernardolaires.dojosandninjas.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,8 +10,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="dojos")
@@ -19,17 +26,49 @@ public class Dojo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
-	@Column(updatable=false)
-	private Date createdAt;
-	private Date updatedAt;
-	@OneToOne(mappedBy="dojo", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private Ninja ninja;
 	
+	@NotNull
+	@Size(min=1, max=200, message="Location can not be left blank.")
+	private String location;
+	
+    // This will not allow the createdAt column to be updated after creation
+    @Column(updatable=false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date createdAt;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date updatedAt;
+    
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
+    }
+    
+    // ONE TO MANY RELATIONSHIPS
+    
+	@OneToMany(mappedBy="dojo", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Ninja> ninjas;
+	
+	
+	// EMPTY CONSTRUCTOR
 	public Dojo() {
 		
 	}
-
+	
+	
+	
+	
+	public Dojo(String location, Date createdAt, Date updatedAt, List<Ninja> ninjas) {
+		this.location = location;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.ninjas = ninjas;
+	}
+	
+	// GETTERS AND SETTERS 
 	public Long getId() {
 		return id;
 	}
@@ -38,12 +77,12 @@ public class Dojo {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public Date getCreatedAt() {
@@ -62,12 +101,12 @@ public class Dojo {
 		this.updatedAt = updatedAt;
 	}
 
-	public Ninja getNinja() {
-		return ninja;
+	public List<Ninja> getNinjas() {
+		return ninjas;
 	}
-
-	public void setNinja(Ninja ninja) {
-		this.ninja = ninja;
+	
+	public void setNinjas(List<Ninja> ninjas) {
+		this.ninjas = ninjas;
 	}
 	
 	

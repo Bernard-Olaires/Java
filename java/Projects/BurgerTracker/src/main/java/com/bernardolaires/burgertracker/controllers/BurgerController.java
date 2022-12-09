@@ -23,6 +23,8 @@ public class BurgerController {
 	@Autowired
 	BurgerService burgerService;
 	
+	// SHOWING ALL BURGERS
+	
 	@GetMapping("/")
 	public String index(@ModelAttribute("burger") Burger burger, Model model) {
 		
@@ -32,6 +34,8 @@ public class BurgerController {
 		
 		return "burgers.jsp";
 	}
+	
+	// NEW BURGER
 	
 	@PostMapping("/burger/new")
 	public String create(
@@ -47,12 +51,16 @@ public class BurgerController {
 		}
 	}
 	
+	// EDIT BURGER
+	
 	@GetMapping("/burgers/{id}/edit")
 	public String edit(@PathVariable("id") Long id, Model model) {
 		Burger burger = burgerService.findBurger(id);
 		model.addAttribute("burger", burger);
 		return "edit.jsp";
 	}
+	
+	// UPDATE BURGER
 	
     @PutMapping("/burgers/{id}")
     public String update(@Valid @ModelAttribute("burger") Burger burger, BindingResult result) {

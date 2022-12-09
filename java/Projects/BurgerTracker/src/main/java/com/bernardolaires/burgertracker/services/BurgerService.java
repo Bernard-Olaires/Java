@@ -11,7 +11,7 @@ import com.bernardolaires.burgertracker.repositories.BurgerRepository;
 @Service
 public class BurgerService {
 	
-	// adding BurgerRepository as a depedency
+	// adding BurgerRepository as a dependency
 	private final BurgerRepository burgerRepository;
 	
 	public BurgerService(BurgerRepository burgerRepository) {
